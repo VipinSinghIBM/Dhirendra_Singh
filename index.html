@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhirendra Singh | Corporate Executive Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           ENTERPRISE DESIGN SYSTEM VARIABLES
+        ========================================= */
+        :root {
+            --primary-dark: #0B1120; /* Deep Navy Blue */
+            --secondary-dark: #1E293B; /* Slate 800 */
+            --accent-color: #2563EB; /* Corporate Royal Blue */
+            --accent-hover: #1D4ED8;
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        /* =========================================
+           1. HOVER-EXPANDING FLOATING ACTION BAR
+        ========================================= */
+        .floating-dock {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+            padding-right: 20px;
+        }
+        .float-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 55px;
+            height: 55px;
+            border-radius: 30px;
+            background: var(--bg-white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-decoration: none;
+            overflow: hidden;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+            border: 1px solid var(--border-color);
+        }
+        .float-icon {
+            min-width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            transition: color 0.3s;
+        }
+        .float-text {
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--bg-white);
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding-right: 20px;
+        }
+        
+        /* Interactive Hover States */
+        .float-item:hover { width: 180px; }
+        .float-item:hover .float-text { opacity: 1; }
+        .float-item.whatsapp:hover { background: #25D366; border-color: #25D366; }
+        .float-item.call:hover { background: #007BFF; border-color: #007BFF; }
+        .float-item.mail:hover { background: #EA4335; border-color: #EA4335; }
+        .float-item:hover .float-icon { color: var(--bg-white); }
+
+        /* =========================================
+           2. EXECUTIVE MEGA NAVIGATION
+        ========================================= */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .brand-logo i { color: var(--accent-color); font-size: 1.5rem; }
+        .nav-menu { display: flex; gap: 30px; list-style: none; }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .nav-menu a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: var(--transition-smooth);
+        }
+        .nav-menu a:hover { color: var(--primary-dark); }
+        .nav-menu a:hover::after { width: 100%; }
+        .btn-corporate {
+            background: var(--primary-dark);
+            color: var(--bg-white);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--primary-dark);
+        }
+        .btn-corporate:hover { background: var(--accent-color); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
+
+        /* =========================================
+           3. AUTHORITY HERO SECTION
+        ========================================= */
+        .hero-section {
+            padding: 12rem 4% 6rem 4%;
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .hero-content h4 { color: var(--accent-color); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem; }
+        .hero-content h1 { font-size: 4.5rem; color: var(--primary-dark); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; }
+        
+        /* Professional Borderless Image Area */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-image-wrapper::before {
+            content: ''; position: absolute; width: 400px; height: 400px; background: rgba(37, 99, 235, 0.05); border-radius: 50%; z-index: 0; filter: blur(40px);
+        }
+        .borderless-photo-box {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #CBD5E1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #94A3B8;
+            font-weight: 600;
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+        .borderless-photo-box:hover { border-color: var(--accent-color); background: rgba(37, 99, 235, 0.02); }
+
+        /* =========================================
+           4. EXECUTIVE BIOGRAPHY & PILLARS
+        ========================================= */
+        .corporate-section { padding: 8rem 4%; background: var(--bg-white); }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 { font-size: 3rem; color: var(--primary-dark); margin-bottom: 1rem; }
+        .section-header p { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+
+        .pillars-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        .pillar-card {
+            padding: 3rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-color); transform: scaleY(0); transition: var(--transition-smooth); transform-origin: bottom;
+        }
+        .pillar-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); background: var(--bg-white); }
+        .pillar-card:hover::before { transform: scaleY(1); }
+        .pillar-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
+        .pillar-card h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary-dark); }
+
+        /* =========================================
+           5. THE CUSTOM CSS SLIDER (USER'S CODE)
+        ========================================= */
+        .slider-section { padding: 8rem 4%; background: var(--primary-dark); color: var(--bg-white); }
+        .slider-section .section-header h2 { color: var(--bg-white); }
+        
+        /* Integrated User's Pure CSS Slider Logic */
+        input[type="radio"] { display: none; }
+        .slider-container {
+            background: transparent;
+            position: relative;
+            height: 600px; /* Adjusted height for premium look */
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .slide-wrapper {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            height: 85%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            overflow: hidden;
+            background: var(--secondary-dark);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #slide-role {
+            background: inherit;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400%;
+            height: 100%;
+            z-index: 100;
+            transition: left .6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            display: flex;
+        }
+        .slide {
+            width: 25%; /* 100% / 4 slides */
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        /* Inside Slide Content Styling */
+        .slide-img-box {
+            border-right: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.2);
+            color: rgba(255,255,255,0.3);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        .slide-content-box {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--secondary-dark);
+        }
+        .slide-content-box h3 { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--bg-white); }
+        .slide-content-box p { font-size: 1.1rem; color: #94A3B8; line-height: 1.8; }
+
+        /* User's Slider Buttons Logic adapted for Corporate */
+        .btn-slider, .btn-slider::after {
+            border-radius: 50%;
+            transition: all .5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+        .btn-slider {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            position: absolute;
+            bottom: 2%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-slider:nth-of-type(1) { left: 40%; }
+        .btn-slider:nth-of-type(2) { left: 46%; }
+        .btn-slider:nth-of-type(3) { left: 52%; }
+        .btn-slider:nth-of-type(4) { left: 58%; }
+        .btn-slider:hover { transform: scale(1.2); border-color: var(--bg-white); }
+
+        .btn-slider::after {
+            content: "";
+            display: inline-block;
+            background: var(--bg-white);
+            width: 12px;
+            height: 12px;
+            transform: scale(.5, .5);
+        }
+
+        /* Slide Movement Logic */
+        input[type="radio"]:checked#slide-2-trigger ~ .slide-wrapper > #slide-role { left: -100%; }
+        input[type="radio"]:checked#slide-3-trigger ~ .slide-wrapper > #slide-role { left: -200%; }
+        input[type="radio"]:checked#slide-4-trigger ~ .slide-wrapper > #slide-role { left: -300%; }
+
+        /* Button Active Logic */
+        input[type="radio"]:checked + label.btn-slider { border-color: var(--accent-color); }
+        input[type="radio"]:checked + label.btn-slider::after { transform: scale(1, 1); background: var(--accent-color); }
+
+
+        /* =========================================
+           6. TECHNICAL ARSENAL (TOOLS GRID)
+        ========================================= */
+        .tools-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .tool-card { background: var(--bg-white); border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; display: flex; align-items: flex-start; gap: 1rem; transition: var(--transition-smooth); }
+        .tool-card:hover { border-color: var(--accent-color); box-shadow: var(--shadow-lg); }
+        .tool-icon { width: 50px; height: 50px; background: var(--bg-light); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--accent-color); font-size: 1.5rem; flex-shrink: 0; }
+        .tool-info h4 { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 0.3rem; }
+        .tool-info p { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* =========================================
+           7. DEEP-DIVE CASE STUDIES
+        ========================================= */
+        .case-studies { background: var(--bg-light); padding: 8rem 4%; }
+        .case-wrapper { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem; }
+        .case-row { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 1fr 2fr; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+        .case-row:hover { box-shadow: var(--shadow-lg); }
+        .case-label { background: var(--primary-dark); color: var(--bg-white); padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+        .case-label h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .case-label span { color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter'; font-size: 0.85rem; }
+        .case-content { padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .case-block h5 { font-family: 'Inter', sans-serif; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .case-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+        /* =========================================
+           8. CORPORATE TIMELINE
+        ========================================= */
+        .timeline-container { max-width: 1000px; margin: 0 auto; border-left: 2px solid var(--border-color); padding-left: 3rem; position: relative; }
+        .timeline-node { position: relative; margin-bottom: 4rem; }
+        .timeline-node::before { content: ''; position: absolute; left: calc(-3rem - 9px); top: 0; width: 16px; height: 16px; background: var(--bg-white); border: 3px solid var(--accent-color); border-radius: 50%; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        .timeline-node h3 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 0.5rem; }
+        .timeline-meta { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--accent-color); margin-bottom: 1rem; display: block; }
+        .timeline-node p { color: var(--text-muted); max-width: 700px; }
+
+        /* =========================================
+           9. ENTERPRISE FOOTER & CONTACT
+        ========================================= */
+        .footer-section { background: var(--primary-dark); color: var(--bg-white); padding: 6rem 4% 2rem 4%; border-top: 5px solid var(--accent-color); }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 5rem; margin-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4rem; }
+        
+        .footer-brand h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .footer-brand p { color: #94A3B8; font-size: 0.95rem; line-height: 1.8; }
+        
+        .footer-links h4 { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: var(--bg-white); margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 0.8rem; }
+        .footer-links ul a { color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-links ul a:hover { color: var(--accent-color); padding-left: 5px; }
+
+        .footer-contact form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .footer-contact input, .footer-contact textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; font-family: 'Inter'; outline: none; }
+        .footer-contact textarea { grid-column: span 2; }
+        .footer-contact input:focus, .footer-contact textarea:focus { border-color: var(--accent-color); }
+        .footer-contact button { grid-column: span 2; background: var(--accent-color); color: white; border: none; padding: 1rem; cursor: pointer; font-weight: 600; border-radius: 4px; transition: 0.3s; }
+        .footer-contact button:hover { background: var(--accent-hover); }
+
+        .copyright-bar { text-align: center; color: #64748B; font-size: 0.9rem; }
+
+        /* =========================================
+           MEDIA QUERIES
+        ========================================= */
+        @media (max-width: 1024px) {
+            .hero-container, .pillars-grid, .case-row, .footer-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .hero-image-wrapper { height: 400px; margin-top: 3rem; }
+            .slide { grid-template-columns: 1fr; }
+            .slide-img-box { display: none; } /* Hide image box on mobile for better text reading */
+            .floating-dock { right: 10px; }
+            .float-item { width: 45px; height: 45px; }
+            .float-icon { min-width: 45px; height: 45px; font-size: 1.1rem; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-dock">
+        <a href="https://wa.me/917651945535" target="_blank" class="float-item whatsapp">
+            <div class="float-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="float-text">Chat on WhatsApp</div>
+        </a>
+        <a href="tel:+917651945535" class="float-item call">
+            <div class="float-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="float-text">Call Direct: +91-7651945535</div>
+        </a>
+        <a href="mailto:dhirendrasingh2060@gmail.com" class="float-item mail">
+            <div class="float-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="float-text">Send an Email</div>
+        </a>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="brand-logo">
+                <i class="fa-solid fa-layer-group"></i>
+                Dhirendra Singh
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about">Executive Summary</a></li>
+                <li><a href="#certifications">Accreditations</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#timeline">Career Log</a></li>
+            </ul>
+            <a href="#contact" class="btn-corporate">Engage Now</a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h4>NDT Supervisor & Quality Assurance Specialist</h4>
+                <h1>Precision Engineering <br>Meets Strategic <br>Compliance.</h1>
+                <p>Seeking an advanced operational role to deploy high-precision non-destructive engineering parameters, ensuring structural integrity and zero-error technical deployment across industrial infrastructures.</p>
+                <a href="#" class="btn-corporate" style="display:inline-block; padding: 1rem 2.5rem; font-size:1.1rem;"><i class="fa-solid fa-file-pdf"></i> Download Official Dossier</a>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="borderless-photo-box">
+                    <i class="fa-solid fa-user-tie fa-4x" style="margin-bottom: 1rem; color: #CBD5E1;"></i>
+                    <p>[ UPLOAD BORDERLESS PNG HERE ]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="corporate-section">
+        <div class="section-header">
+            <p>Core Competencies</p>
+            <h2>Strategic Pillars of Operation</h2>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <i class="fa-solid fa-microscope"></i>
+                <h3>NDT Diagnostics</h3>
+                <p style="color:var(--text-muted); font-size:0.95rem;">Extensive expertise in Non-Destructive Testing, scanning rail and weld properties for extreme stress operations and ensuring zero-defect compliance.</p>
+            </div>
+            <div class="pillar-card">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <h3>Precision Instrumentation</h3>
+                <p style="color:var(--text-muted); font-size:0.95rem;">Mastery in dimensional validation using Vernier Calipers, Micrometers, Dial Gauges, and Digital Surface Roughness Testers.</p>
+            </div>
+            <div class="pillar-card">
+                <i class="fa-solid fa-people-group"></i>
+                <h3>Social Leadership (MSW)</h3>
+                <p style="color:var(--text-muted); font-size:0.95rem;">Complementing technical skills with a Master of Social Work framework for robust project administration and frontline team alignment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="slider-section">
+        <div class="section-header">
+            <p style="color:var(--accent-color);">Verified Credentials</p>
+            <h2>Professional Accreditations</h2>
+        </div>
+        
+        <div class="slider-container">
+            <input type="radio" name="slider" id="slide-1-trigger" class="trigger" checked>
+            <label class="btn-slider" for="slide-1-trigger"></label>
+            <input type="radio" name="slider" id="slide-2-trigger" class="trigger">
+            <label class="btn-slider" for="slide-2-trigger"></label>
+            <input type="radio" name="slider" id="slide-3-trigger" class="trigger">
+            <label class="btn-slider" for="slide-3-trigger"></label>
+            <input type="radio" name="slider" id="slide-4-trigger" class="trigger">
+            <label class="btn-slider" for="slide-4-trigger"></label>
+
+            <div class="slide-wrapper">
+                <div id="slide-role">
+                    
+                    <div class="slide">
+                        <div class="slide-img-box">[ CERTIFICATE IMAGE 1 ]</div>
+                        <div class="slide-content-box">
+                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Certification</h5>
+                            <h3>NDT Basic Training</h3>
+                            <p>Successfully certified and verified at ANDT Greater Noida. This credential validates mastery in advanced quality control, ultrasonic flaw detection, and critical safety evaluations in industrial environments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <div class="slide-img-box">[ CERTIFICATE IMAGE 2 ]</div>
+                        <div class="slide-content-box">
+                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Compliance</h5>
+                            <h3>RDSO Lucknow Validation</h3>
+                            <p>Official NDT certification registration track with RDSO Lucknow. Dedicated to high-tolerance safety testing, weld integrity checks, and heavy rail structural infrastructure validation workflows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <div class="slide-img-box">[ CERTIFICATE IMAGE 3 ]</div>
+                        <div class="slide-content-box">
+                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Academics</h5>
+                            <h3>Diploma in Mechanical Engineering</h3>
+                            <p>Passed out from College of Fatehpur under BTEUP Lucknow board in 2014, logging an overall high score of 74%. Acquired core skills in solid dynamics and industrial design.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <div class="slide-img-box">[ CERTIFICATE IMAGE 4 ]</div>
+                        <div class="slide-content-box">
+                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Leadership</h5>
+                            <h3>Master of Social Work (MSW)</h3>
+                            <p>Degree successfully awarded by Kalinga University in 2017 with a 67% performance index. Focused on resource alignment, ethical frameworks, and group leadership models.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="operations" class="corporate-section">
+        <div class="section-header">
+            <p>IT & Hardware Arsenal</p>
+            <h2>Technical Equipment Mastery</h2>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+                <div class="tool-info">
+                    <h4>Vernier & Micrometer</h4>
+                    <p>High-precision linear and dimensional scaling for manufacturing tolerances.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-gauge"></i></div>
+                <div class="tool-info">
+                    <h4>Dial & Thread Gauges</h4>
+                    <p>Managing Radial, Tilt, and Thread Gauges for absolute pitch uniformity.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-desktop"></i></div>
+                <div class="tool-info">
+                    <h4>Auto-CAD 2D/3D</h4>
+                    <p>Isometric orthographic projection and 3D solid modeling frameworks.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fa-solid fa-gears"></i></div>
+                <div class="tool-info">
+                    <h4>Pro-Engineering</h4>
+                    <p>Mechanical engineering design execution and Cemetron rendering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies">
+        <div class="section-header">
+            <p>Proof of Work</p>
+            <h2>Industrial Case Repositories</h2>
+        </div>
+        <div class="case-wrapper">
+            
+            <div class="case-row">
+                <div class="case-label">
+                    <span>Field Inspection</span>
+                    <h3>Rail Asset Weld Diagnostics</h3>
+                </div>
+                <div class="case-content">
+                    <div class="case-block">
+                        <h5>The Challenge</h5>
+                        <p>Detecting deep structural macro-defects across raw welded track structures under tight regional deadline conditions without halting freight operations.</p>
+                    </div>
+                    <div class="case-block">
+                        <h5>The Implementation</h5>
+                        <p>Deployed strict NDT test metrics utilizing specialized Dial and Thread Gauges coupled with advanced ultrasonic tracking tools per RDSO guidelines.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-row">
+                <div class="case-label">
+                    <span>CAD Prototyping</span>
+                    <h3>Component Design Optimization</h3>
+                </div>
+                <div class="case-content">
+                    <div class="case-block">
+                        <h5>The Challenge</h5>
+                        <p>Legacy mechanical designs required immediate conversion into standardized 3D models for automated component asset prototyping pipelines.</p>
+                    </div>
+                    <div class="case-block">
+                        <h5>The Implementation</h5>
+                        <p>Engineered detailed isometric 2D sketches and full 3D solid model designs via specialized Auto-Cad software, reducing structural prototype errors entirely.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="timeline" class="corporate-section">
+        <div class="section-header">
+            <p>Professional Journey</p>
+            <h2>Career Chronology</h2>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-node">
+                <h3>NDT Supervisor</h3>
+                <span class="timeline-meta">The India Thermit Corporation Ltd | Present</span>
+                <p>Presently leading technical operations in processing ultrasonic test logs. Managing rail and weld safety compliance pipelines using advanced precision instruments and adhering strictly to established RDSO quality protocols.</p>
+            </div>
+            <div class="timeline-node">
+                <h3>Master of Social Work (MSW)</h3>
+                <span class="timeline-meta">Kalinga University | Graduated 2017</span>
+                <p>Acquired robust knowledge in strategic resource alignment, developmental frameworks, project coordination, and human resource leadership workflows.</p>
+            </div>
+            <div class="timeline-node">
+                <h3>Diploma in Mechanical Engineering</h3>
+                <span class="timeline-meta">BTEUP Lucknow (College of Fatehpur) | Graduated 2014</span>
+                <p>Passed with 74% aggregate. Specialized in institutional core skills across mechanical designs, technical parameters, solid modeling, and geometric design layouts.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer-section">
+        <div class="footer-grid">
+            
+            <div class="footer-brand">
+                <h2>Dhirendra Singh</h2>
+                <p>Precision Mechanical Engineer and NDT Specialist dedicated to structural integrity, rigorous safety compliance, and robust operational execution.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>System Maps</h4>
+                <ul>
+                    <li><a href="#about">Executive Summary</a></li>
+                    <li><a href="#certifications">Accreditations</a></li>
+                    <li><a href="#operations">Technical Arsenal</a></li>
+                    <li><a href="#timeline">Career Chronology</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4 style="font-family:'Inter'; text-transform:uppercase; letter-spacing:2px; font-size:0.9rem; margin-bottom:1.5rem; grid-column:span 2;">Establish Contact</h4>
+                <form onsubmit="event.preventDefault(); alert('Communication dispatched successfully!');">
+                    <input type="text" placeholder="Enterprise / Recruiter Name" required>
+                    <input type="email" placeholder="Official Email Address" required>
+                    <textarea rows="3" placeholder="Specify engagement objectives or project parameters..." required></textarea>
+                    <button type="submit">Broadcast Secure Message</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="copyright-bar">
+            <p>&copy; 2026 Dhirendra Singh. Engineered for Precision. | Address: Village Manudera, Post Kalyanpur, Dist Fatehpur, U.P. (212666)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
