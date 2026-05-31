@@ -1,630 +1,1075 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhirendra Singh | Corporate Executive Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Dhirendra Singh - Digital Portfolio</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        /* =========================================
-           ENTERPRISE DESIGN SYSTEM VARIABLES
-        ========================================= */
-        :root {
-            --primary-dark: #0B1120; /* Deep Navy Blue */
-            --secondary-dark: #1E293B; /* Slate 800 */
-            --accent-color: #2563EB; /* Corporate Royal Blue */
-            --accent-hover: #1D4ED8;
-            --bg-light: #F8FAFC;
-            --bg-white: #FFFFFF;
-            --text-main: #0F172A;
-            --text-muted: #64748B;
-            --border-color: #E2E8F0;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        /* ===== COLOR THEME — INDUSTRIAL PROFESSIONAL ===== */
+        :root[data-theme="dark"] {
+            --bg: #090e14;
+            --surface: #111a24;
+            --card: #182533;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --accent: #f59e0b; /* Amber Industrial */
+            --accent2: #38bdf8; /* Steel Blue */
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --slider-g1: linear-gradient(135deg, #0d1520 0%, #1a2a4a 100%);
+            --slider-g2: linear-gradient(135deg, #0f1a10 0%, #1a3a20 100%);
+            --slider-g3: linear-gradient(135deg, #1a0f0a 0%, #3a1a08 100%);
+            --text-shadow-color: #1e293b;
+            --marquee-speed: 25s;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-
-        /* =========================================
-           1. HOVER-EXPANDING FLOATING ACTION BAR
-        ========================================= */
-        .floating-dock {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 9999;
-            padding-right: 20px;
+        :root[data-theme="light"] {
+            --bg: #f8fafc;
+            --surface: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --accent: #d97706; /* Solid Amber */
+            --accent2: #0284c7; /* Darker Steel Blue */
+            --border: rgba(0, 0, 0, 0.1);
+            --shadow: rgba(15, 23, 42, 0.05);
+            --slider-g1: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            --slider-g2: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            --slider-g3: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            --text-shadow-color: #94a3b8;
+            --marquee-speed: 25s;
         }
-        .float-item {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: 55px;
-            height: 55px;
-            border-radius: 30px;
-            background: var(--bg-white);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+        /* ===== BASE STYLES ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background-color 0.4s, color 0.4s;
+        }
+        a {
+            color: inherit;
             text-decoration: none;
-            overflow: hidden;
-            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
-            border: 1px solid var(--border-color);
         }
-        .float-icon {
-            min-width: 55px;
-            height: 55px;
-            display: flex;
-            justify-content: center;
+        li {
+            list-style: none;
+        }
+        section {
+            padding: 80px max(4vw, 20px);
+            position: relative;
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            position: fixed;
+            top: 0; left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent2);
+            position: fixed;
+            top: 0; left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease-out;
+            mix-blend-mode: difference;
+        }
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        /* ===== SCROLL FADE-UP ANIMATION ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== REUSABLE INTERACTIVE COMPONENTS ===== */
+        .btn {
+            display: inline-flex;
             align-items: center;
-            font-size: 1.4rem;
-            color: var(--primary-dark);
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-filled {
+            background-color: var(--accent);
+            color: #ffffff !important;
+            border: 2px solid var(--accent);
+        }
+        .btn-filled:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent2);
+            background-color: rgba(56, 189, 248, 0.05);
+            transform: translateY(-2px);
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 40px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 max(4vw, 20px);
+            background: rgba(9, 14, 20, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: background 0.4s;
+        }
+        [data-theme="light"] .navbar {
+            background: rgba(248, 250, 252, 0.7);
+        }
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .nav-logo span:first-child { color: var(--accent); }
+        .nav-logo span:last-child { color: var(--accent2); }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--muted);
             transition: color 0.3s;
         }
-        .float-text {
-            white-space: nowrap;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--bg-white);
-            opacity: 0;
-            transition: opacity 0.3s;
-            padding-right: 20px;
-        }
+        .nav-links a:hover { color: var(--accent); }
         
-        /* Interactive Hover States */
-        .float-item:hover { width: 180px; }
-        .float-item:hover .float-text { opacity: 1; }
-        .float-item.whatsapp:hover { background: #25D366; border-color: #25D366; }
-        .float-item.call:hover { background: #007BFF; border-color: #007BFF; }
-        .float-item.mail:hover { background: #EA4335; border-color: #EA4335; }
-        .float-item:hover .float-icon { color: var(--bg-white); }
-
-        /* =========================================
-           2. EXECUTIVE MEGA NAVIGATION
-        ========================================= */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 4%;
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            transition: background 0.3s;
+        }
+        .theme-toggle:hover {
+            background-color: var(--surface);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                flex-direction: column;
+                background: var(--surface);
+                padding: 20px;
+                box-shadow: 0 10px 15px var(--shadow);
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+        }
+
+        /* ===== SECTION 1 — HERO SLIDER ===== */
+        .hero-container {
+            position: relative;
+            height: clamp(420px, 55vw, 580px);
+            margin-top: 70px;
+            overflow: hidden;
+        }
+        .slider-track {
+            display: flex;
+            height: 100%;
+            width: 300%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide {
+            width: 33.3333%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 max(4vw, 20px);
+            position: relative;
+        }
+        .slide:nth-child(1) { background: var(--slider-g1); }
+        .slide:nth-child(2) { background: var(--slider-g2); }
+        .slide:nth-child(3) { background: var(--slider-g3); }
+
+        .slide-content {
+            max-width: 55%;
+            z-index: 5;
+        }
+        [data-theme="light"] .slide-content * {
+            color: var(--text) !important;
+        }
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 12px;
+            color: #ffffff;
+            text-shadow: 
+                1px 1px 0px var(--text-shadow-color),
+                2px 2px 0px var(--text-shadow-color),
+                3px 3px 0px var(--text-shadow-color),
+                4px 4px 0px var(--text-shadow-color);
+        }
+        .typewriter-container {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--accent);
+            margin-bottom: 16px;
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--accent);
+            margin-left: 4px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+        
+        .slide-desc {
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: var(--muted);
+            margin-bottom: 28px;
+            max-width: 520px;
+            line-height: 1.5;
+        }
+        [data-theme="dark"] .slide-desc { color: rgba(255,255,255,0.7); }
+
+        .slide-actions {
+            display: flex;
+            gap: 16px;
+        }
+        [data-theme="dark"] .slide-actions .btn-outline {
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* Optional Slide Micro Project Frame */
+        .slide-project-thumb {
+            position: absolute;
+            bottom: 20px;
+            left: max(4vw, 20px);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .slide-project-thumb img {
+            width: 32px; height: 24px; object-fit: cover; border-radius: 2px;
+        }
+
+        /* Slider Controls */
+        .slider-arrow {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 15; transition: 0.3s;
+        }
+        .slider-arrow:hover { background: var(--accent); }
+        .arrow-left { left: 20px; }
+        .arrow-right { right: 20px; }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 15;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.4); cursor: pointer; transition: 0.3s;
+        }
+        .dot.active { background: var(--accent); width: 20px; border-radius: 4px; }
+
+        /* Shared Fixed Overlapping Hero Photo Frame */
+        .shared-hero-frame {
+            position: absolute;
+            bottom: -60px;
+            right: max(4vw, 40px);
+            width: min(320px, 32vw);
+            height: min(400px, 42vw);
+            z-index: 20;
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+        }
+        @media (max-width: 768px) {
+            .slide-content { max-width: 100%; }
+            .shared-hero-frame { display: none; }
+        }
+        .image-container {
+            width: 100%; height: 100%;
+            position: relative;
+            border-radius: 8px;
+            border: 4px solid var(--accent2);
+            box-shadow: 0 15px 35px var(--shadow);
+            overflow: hidden;
+            background: var(--surface);
+        }
+        .hero-img {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .hero-img.active { opacity: 1; }
+        
+        .placeholder-camera-box {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            gap: 12px;
+            background: var(--card);
+        }
+        .placeholder-camera-box span { font-size: 3rem; }
+
+        .availability-badge {
+            position: absolute;
+            bottom: -18px; left: 50%;
+            transform: translateX(-50%) rotate(3deg);
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px var(--shadow);
+            display: flex;
+            align-items: center; gap: 6px;
+        }
+
+        /* Hero Quick Stats Subpanel */
+        .hero-stats-strip {
+            display: flex;
+            gap: 30px;
+            margin-top: 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+        .stat-item h3 {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+        .stat-item p {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ===== SECTION 2 — ABOUT ===== */
+        #about {
+            padding-top: 120px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+        }
+        @media (max-width: 900px) {
+            #about { grid-template-columns: 1fr; padding-top: 50px; }
+        }
+        .about-story p {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .about-story p strong {
+            color: var(--accent);
+        }
+        .about-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+        .info-card h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent2);
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .info-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== SECTION 3 — TECHNICAL SKILLS ===== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        @media (max-width: 768px) {
+            .skills-container { grid-template-columns: 1fr; }
+        }
+        .skill-group h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent2);
+            padding-left: 10px;
+        }
+        .skill-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .skill-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 6px;
+        }
+        .skill-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .brand-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .brand-logo i { color: var(--accent-color); font-size: 1.5rem; }
-        .nav-menu { display: flex; gap: 30px; list-style: none; }
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-muted);
+            margin-bottom: 8px;
             font-weight: 600;
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition-smooth);
-            position: relative;
         }
-        .nav-menu a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: var(--transition-smooth);
-        }
-        .nav-menu a:hover { color: var(--primary-dark); }
-        .nav-menu a:hover::after { width: 100%; }
-        .btn-corporate {
-            background: var(--primary-dark);
-            color: var(--bg-white);
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            border: 1px solid var(--primary-dark);
-        }
-        .btn-corporate:hover { background: var(--accent-color); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
-
-        /* =========================================
-           3. AUTHORITY HERO SECTION
-        ========================================= */
-        .hero-section {
-            padding: 12rem 4% 6rem 4%;
-            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 5rem;
-            align-items: center;
-        }
-        .hero-content h4 { color: var(--accent-color); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem; }
-        .hero-content h1 { font-size: 4.5rem; color: var(--primary-dark); line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; }
-        
-        /* Professional Borderless Image Area */
-        .hero-image-wrapper {
-            position: relative;
+        .skill-bar-bg {
             width: 100%;
-            height: 550px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 6px;
+            background-color: var(--surface);
+            border-radius: 3px;
+            overflow: hidden;
         }
-        .hero-image-wrapper::before {
-            content: ''; position: absolute; width: 400px; height: 400px; background: rgba(37, 99, 235, 0.05); border-radius: 50%; z-index: 0; filter: blur(40px);
-        }
-        .borderless-photo-box {
-            position: relative;
-            z-index: 2;
-            width: 100%;
+        .skill-bar-fill {
+            width: 0%;
             height: 100%;
-            border: 2px dashed #CBD5E1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #94A3B8;
-            font-weight: 600;
-            background: transparent;
-            transition: var(--transition-smooth);
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 3px;
+            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
         }
-        .borderless-photo-box:hover { border-color: var(--accent-color); background: rgba(37, 99, 235, 0.02); }
 
-        /* =========================================
-           4. EXECUTIVE BIOGRAPHY & PILLARS
-        ========================================= */
-        .corporate-section { padding: 8rem 4%; background: var(--bg-white); }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-header h2 { font-size: 3rem; color: var(--primary-dark); margin-bottom: 1rem; }
-        .section-header p { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
-
-        .pillars-grid {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* ===== SECTION 4 — SOFT SKILLS ===== */
+        .soft-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
-        .pillar-card {
-            padding: 3rem;
-            background: var(--bg-light);
+        .soft-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 24px;
             border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px var(--shadow);
         }
-        .pillar-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-color); transform: scaleY(0); transition: var(--transition-smooth); transform-origin: bottom;
+        .soft-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
-        .pillar-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); background: var(--bg-white); }
-        .pillar-card:hover::before { transform: scaleY(1); }
-        .pillar-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
-        .pillar-card h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary-dark); }
-
-        /* =========================================
-           5. THE CUSTOM CSS SLIDER (USER'S CODE)
-        ========================================= */
-        .slider-section { padding: 8rem 4%; background: var(--primary-dark); color: var(--bg-white); }
-        .slider-section .section-header h2 { color: var(--bg-white); }
-        
-        /* Integrated User's Pure CSS Slider Logic */
-        input[type="radio"] { display: none; }
-        .slider-container {
-            background: transparent;
-            position: relative;
-            height: 600px; /* Adjusted height for premium look */
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
+        .soft-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
         }
-        .slide-wrapper {
-            position: relative;
-            margin: 0 auto;
-            width: 100%;
-            height: 85%;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            overflow: hidden;
-            background: var(--secondary-dark);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        #slide-role {
-            background: inherit;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 400%;
-            height: 100%;
-            z-index: 100;
-            transition: left .6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-            display: flex;
-        }
-        .slide {
-            width: 25%; /* 100% / 4 slides */
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        /* Inside Slide Content Styling */
-        .slide-img-box {
-            border-right: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0,0,0,0.2);
-            color: rgba(255,255,255,0.3);
+        .soft-card h3 {
+            font-size: 1.1rem;
             font-weight: 600;
-            letter-spacing: 2px;
         }
-        .slide-content-box {
-            padding: 4rem;
+
+        /* ===== SECTION 5 — EDUCATION TIMELINE ===== */
+        #education {
+            background-color: var(--surface);
+        }
+        .edu-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+        }
+        .edu-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--accent2));
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .edu-timeline::before { left: 20px; transform: none; }
+        }
+        .edu-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .edu-item-left { left: 0; text-align: right; }
+        .edu-item-right { left: 50%; text-align: left; }
+        
+        @media (max-width: 768px) {
+            .edu-item { width: 100%; left: 0; text-align: left; padding-left: 45px; padding-right: 10px; }
+        }
+        .edu-dot {
+            position: absolute;
+            top: 26px; width: 14px; height: 14px;
+            border-radius: 50%;
+            background-color: var(--bg);
+            border: 3px solid var(--accent);
+            z-index: 5;
+        }
+        .edu-item-left .edu-dot { right: -7px; }
+        .edu-item-right .edu-dot { left: -7px; }
+        
+        @media (max-width: 768px) {
+            .edu-dot { left: 13px !important; right: auto !important; }
+        }
+        .edu-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            text-align: left;
+        }
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent2);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .edu-degree {
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+        .edu-inst {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .badge-percentage {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .latest-tag {
+            position: absolute;
+            top: 12px; right: 12px;
+            background: var(--accent2);
+            color: #fff;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ===== SECTION 6 — WORK EXPERIENCE ===== */
+        .exp-container {
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 35px;
+        }
+        .exp-container::before {
+            content: ''; position: absolute;
+            top:0; bottom:0; left: 4px; width: 2px;
+            background-color: var(--border);
+        }
+        .exp-dot-glow {
+            position: absolute;
+            left: -2px; top: 6px;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+        .exp-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        .exp-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent2);
+            margin-bottom: 4px;
+        }
+        .exp-title {
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+        }
+        .exp-company {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+        .exp-bullets {
+            margin-left: 18px;
+            margin-bottom: 20px;
+        }
+        .exp-bullets li {
+            list-style-type: square;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        [data-theme="light"] .exp-bullets li { color: var(--text); }
+
+        /* ===== SECTION 7 — CERTIFICATIONS ===== */
+        #certs { background-color: var(--surface); }
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .cert-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .cert-icon-box {
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .cert-details h4 {
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .cert-details p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .cert-action-btn {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent2);
+            background: rgba(56, 189, 248, 0.08);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* ===== SECTION 8 — REFERENCES MARQUEE ===== */
+        .marquee-section {
+            padding-left: 0; padding-right: 0;
+            overflow: hidden;
+        }
+        .marquee-wrapper {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            background: var(--secondary-dark);
+            gap: 16px;
+            position: relative;
+            width: 100%;
         }
-        .slide-content-box h3 { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--bg-white); }
-        .slide-content-box p { font-size: 1.1rem; color: #94A3B8; line-height: 1.8; }
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: ''; position: absolute; top:0; bottom:0; width: 100px; z-index: 5; pointer-events: none;
+        }
+        .marquee-wrapper::before { left:0; background: linear-gradient(90deg, var(--bg), transparent); }
+        .marquee-wrapper::after { right:0; background: linear-gradient(-90deg, var(--bg), transparent); }
 
-        /* User's Slider Buttons Logic adapted for Corporate */
-        .btn-slider, .btn-slider::after {
-            border-radius: 50%;
-            transition: all .5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-        }
-        .btn-slider {
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            background: transparent;
-            position: absolute;
-            bottom: 2%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 1000;
+        .marquee-row {
             display: flex;
-            justify-content: center;
+            width: max-content;
+            gap: 16px;
+        }
+        .marquee-left { animation: scrollLeft var(--marquee-speed) linear infinite; }
+        .marquee-right { animation: scrollRight var(--marquee-speed) linear infinite; }
+        .marquee-row:hover { animation-play-state: paused; }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .ref-pill {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 4px;
+            display: flex;
             align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px var(--shadow);
         }
-        .btn-slider:nth-of-type(1) { left: 40%; }
-        .btn-slider:nth-of-type(2) { left: 46%; }
-        .btn-slider:nth-of-type(3) { left: 52%; }
-        .btn-slider:nth-of-type(4) { left: 58%; }
-        .btn-slider:hover { transform: scale(1.2); border-color: var(--bg-white); }
+        .ref-avatar { font-size: 1.2rem; }
+        .ref-info strong { font-size: 0.9rem; font-weight: 600; }
+        .ref-info span { font-size: 0.8rem; color: var(--muted); margin-left: 6px; }
 
-        .btn-slider::after {
-            content: "";
-            display: inline-block;
-            background: var(--bg-white);
-            width: 12px;
-            height: 12px;
-            transform: scale(.5, .5);
+        /* ===== SECTION 9 — CONTACT ===== */
+        #contact { background-color: var(--surface); }
+        .contact-container {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
         }
-
-        /* Slide Movement Logic */
-        input[type="radio"]:checked#slide-2-trigger ~ .slide-wrapper > #slide-role { left: -100%; }
-        input[type="radio"]:checked#slide-3-trigger ~ .slide-wrapper > #slide-role { left: -200%; }
-        input[type="radio"]:checked#slide-4-trigger ~ .slide-wrapper > #slide-role { left: -300%; }
-
-        /* Button Active Logic */
-        input[type="radio"]:checked + label.btn-slider { border-color: var(--accent-color); }
-        input[type="radio"]:checked + label.btn-slider::after { transform: scale(1, 1); background: var(--accent-color); }
-
-
-        /* =========================================
-           6. TECHNICAL ARSENAL (TOOLS GRID)
-        ========================================= */
-        .tools-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .tool-card { background: var(--bg-white); border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; display: flex; align-items: flex-start; gap: 1rem; transition: var(--transition-smooth); }
-        .tool-card:hover { border-color: var(--accent-color); box-shadow: var(--shadow-lg); }
-        .tool-icon { width: 50px; height: 50px; background: var(--bg-light); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--accent-color); font-size: 1.5rem; flex-shrink: 0; }
-        .tool-info h4 { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 0.3rem; }
-        .tool-info p { font-size: 0.9rem; color: var(--text-muted); }
-
-        /* =========================================
-           7. DEEP-DIVE CASE STUDIES
-        ========================================= */
-        .case-studies { background: var(--bg-light); padding: 8rem 4%; }
-        .case-wrapper { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem; }
-        .case-row { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 1fr 2fr; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
-        .case-row:hover { box-shadow: var(--shadow-lg); }
-        .case-label { background: var(--primary-dark); color: var(--bg-white); padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .case-label h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .case-label span { color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter'; font-size: 0.85rem; }
-        .case-content { padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .case-block h5 { font-family: 'Inter', sans-serif; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 0.5rem; }
-        .case-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-
-        /* =========================================
-           8. CORPORATE TIMELINE
-        ========================================= */
-        .timeline-container { max-width: 1000px; margin: 0 auto; border-left: 2px solid var(--border-color); padding-left: 3rem; position: relative; }
-        .timeline-node { position: relative; margin-bottom: 4rem; }
-        .timeline-node::before { content: ''; position: absolute; left: calc(-3rem - 9px); top: 0; width: 16px; height: 16px; background: var(--bg-white); border: 3px solid var(--accent-color); border-radius: 50%; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
-        .timeline-node h3 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 0.5rem; }
-        .timeline-meta { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--accent-color); margin-bottom: 1rem; display: block; }
-        .timeline-node p { color: var(--text-muted); max-width: 700px; }
-
-        /* =========================================
-           9. ENTERPRISE FOOTER & CONTACT
-        ========================================= */
-        .footer-section { background: var(--primary-dark); color: var(--bg-white); padding: 6rem 4% 2rem 4%; border-top: 5px solid var(--accent-color); }
-        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 5rem; margin-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4rem; }
-        
-        .footer-brand h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .footer-brand p { color: #94A3B8; font-size: 0.95rem; line-height: 1.8; }
-        
-        .footer-links h4 { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: var(--bg-white); margin-bottom: 1.5rem; font-size: 0.9rem; }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li { margin-bottom: 0.8rem; }
-        .footer-links ul a { color: #94A3B8; text-decoration: none; transition: 0.3s; }
-        .footer-links ul a:hover { color: var(--accent-color); padding-left: 5px; }
-
-        .footer-contact form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .footer-contact input, .footer-contact textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; font-family: 'Inter'; outline: none; }
-        .footer-contact textarea { grid-column: span 2; }
-        .footer-contact input:focus, .footer-contact textarea:focus { border-color: var(--accent-color); }
-        .footer-contact button { grid-column: span 2; background: var(--accent-color); color: white; border: none; padding: 1rem; cursor: pointer; font-weight: 600; border-radius: 4px; transition: 0.3s; }
-        .footer-contact button:hover { background: var(--accent-hover); }
-
-        .copyright-bar { text-align: center; color: #64748B; font-size: 0.9rem; }
-
-        /* =========================================
-           MEDIA QUERIES
-        ========================================= */
-        @media (max-width: 1024px) {
-            .hero-container, .pillars-grid, .case-row, .footer-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 3.5rem; }
-            .hero-image-wrapper { height: 400px; margin-top: 3rem; }
-            .slide { grid-template-columns: 1fr; }
-            .slide-img-box { display: none; } /* Hide image box on mobile for better text reading */
-            .floating-dock { right: 10px; }
-            .float-item { width: 45px; height: 45px; }
-            .float-icon { min-width: 45px; height: 45px; font-size: 1.1rem; }
-            .nav-menu { display: none; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+            margin-bottom: 32px;
         }
+        .contact-btn {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+        .contact-btn:hover {
+            border-color: var(--accent2);
+            transform: translateY(-2px);
+        }
+        .contact-icon { font-size: 1.4rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 30px max(4vw, 20px);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        [data-theme="light"] footer { color: var(--text); }
+        footer a { color: var(--accent); font-weight: 600; }
     </style>
 </head>
 <body>
 
-    <div class="floating-dock">
-        <a href="https://wa.me/917651945535" target="_blank" class="float-item whatsapp">
-            <div class="float-icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="float-text">Chat on WhatsApp</div>
-        </a>
-        <a href="tel:+917651945535" class="float-item call">
-            <div class="float-icon"><i class="fa-solid fa-phone"></i></div>
-            <div class="float-text">Call Direct: +91-7651945535</div>
-        </a>
-        <a href="mailto:dhirendrasingh2060@gmail.com" class="float-item mail">
-            <div class="float-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div class="float-text">Send an Email</div>
-        </a>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span>Dhirendra</span><span>Singh</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certs">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☀️</button>
+            <a href="#contact" class="btn btn-filled" style="padding: 8px 16px; font-size: 0.85rem; border-radius: 4px;">Hire Me</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="hero-container" id="hero">
+        <div class="slider-track" id="sliderTrack">
+            
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="slide-title">Precision.<br>Every Time.</h1>
+                    <div class="typewriter-container">
+                        <span>I am a&nbsp;</span><span id="typewriter"></span><span class="cursor">|</span>
+                    </div>
+                    <p class="slide-desc">Utilizing robust engineering frameworks, meticulous inspection methods, and high precision quality control protocols.</p>
+                    <div class="slide-actions">
+                        <a href="#experience" class="btn btn-filled">View My Work</a>
+                        <a href="#contact" class="btn btn-outline">Download Resume</a>
+                    </div>
+                    <div class="slide-project-thumb">
+                        <span>📸 Project Photo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="slide-title">10+ Years of Technical Excellence.</h1>
+                    <p class="slide-desc" style="font-size:1.15rem; color:var(--accent);">NDT Supervisor at India Thermit Corporation Ltd</p>
+                    <p class="slide-desc">Supervising rail joint integrity and non-destructive testing loops on critical infrastructural routes across India.</p>
+                    <div class="slide-actions">
+                        <a href="#about" class="btn btn-filled">Read My Story</a>
+                    </div>
+                    <div class="slide-project-thumb">
+                        <span>📸 Project Photo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="slide-title">From Blueprint to Reality.</h1>
+                    <p class="slide-desc" style="font-size:1.15rem; color:var(--accent2);">AutoCAD | Pro-E | NDT | Mechanical Design</p>
+                    <p class="slide-desc">Translating strict industrial parameter definitions into production ready modeling designs and systematic operations.</p>
+                    <div class="slide-actions">
+                        <a href="#skills" class="btn btn-filled">Explore Capabilities</a>
+                    </div>
+                    <div class="slide-project-thumb">
+                        <span>📸 Project Photo</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="shared-hero-frame">
+            <div class="image-container">
+                <div class="hero-img active">
+                    <div class="placeholder-camera-box"><span><img src=Dhirendra.png></span><p style="font-size:0.8rem; font-weight:600;">Dhirendra Singh</p></div>
+                </div>
+                <div class="hero-img">
+                    <div class="placeholder-camera-box"><span>🛠️</span><p style="font-size:0.8rem; font-weight:600;">NDT Field Operations</p></div>
+                </div>
+                <div class="hero-img">
+                    <div class="placeholder-camera-box"><span>📐</span><p style="font-size:0.8rem; font-weight:600;">CAD Workspace</p></div>
+                </div>
+            </div>
+            <div class="availability-badge">
+                <span>🟢</span> Open to Opportunities
+            </div>
+            
+            <div class="hero-stats-strip">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years Exp</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>Certs</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2</h3>
+                    <p>Contacts</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-left" id="prevSlide" aria-label="Previous">◀</button>
+        <button class="slider-arrow arrow-right" id="nextSlide" aria-label="Next">▶</button>
+        <div class="slider-dots" id="sliderDots"></div>
     </div>
 
-    <header>
-        <div class="nav-container">
-            <div class="brand-logo">
-                <i class="fa-solid fa-layer-group"></i>
-                Dhirendra Singh
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#about">Executive Summary</a></li>
-                <li><a href="#certifications">Accreditations</a></li>
-                <li><a href="#operations">Operations</a></li>
-                <li><a href="#timeline">Career Log</a></li>
-            </ul>
-            <a href="#contact" class="btn-corporate">Engage Now</a>
+    <section id="about" class="fade-up">
+        <div class="about-story">
+            <span class="section-label">01 // Profile Summary</span>
+            <h2 class="section-title">The Engineering Journey</h2>
+            <p>With over a decade of hands-on experience in mechanical engineering and Non-Destructive Testing, I bring precision, dedication, and technical expertise to every project I take on. Starting from a small village in Fatehpur, U.P., I have built my career step by step — from a Diploma in Mechanical Engineering to working as an NDT Supervisor at India Thermit Corporation Ltd, ensuring the safety and quality of critical rail infrastructure across India.</p>
+            <p>My journey has not been linear — I hold a Master's in Social Work alongside my technical qualifications, which gives me a unique ability to lead teams, communicate effectively, and understand people beyond just machinery and processes.</p>
+            <p>Today, I am looking to bring this rare combination of technical precision and human understanding to an organization where quality, reliability, and growth matter.</p>
         </div>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h4>NDT Supervisor & Quality Assurance Specialist</h4>
-                <h1>Precision Engineering <br>Meets Strategic <br>Compliance.</h1>
-                <p>Seeking an advanced operational role to deploy high-precision non-destructive engineering parameters, ensuring structural integrity and zero-error technical deployment across industrial infrastructures.</p>
-                <a href="#" class="btn-corporate" style="display:inline-block; padding: 1rem 2.5rem; font-size:1.1rem;"><i class="fa-solid fa-file-pdf"></i> Download Official Dossier</a>
+        <div class="about-cards">
+            <div class="info-card">
+                <h4>Core Objective</h4>
+                <p>Seeking an entry-level/growth position in a technology-oriented organization, utilizing strengths in NDT, mechanical engineering, and project management.</p>
             </div>
-            <div class="hero-image-wrapper">
-                <div class="borderless-photo-box">
-                    <i class="fa-solid fa-user-tie fa-4x" style="margin-bottom: 1rem; color: #CBD5E1;"></i>
-                    <p>[ UPLOAD BORDERLESS PNG HERE ]</p>
-                </div>
+            <div class="info-card">
+                <h4>Primary Location</h4>
+                <p>Village Manudera, Post Kalyanpur, Dist Fatehpur, U.P. — 212666</p>
+            </div>
+            <div class="info-card">
+                <h4>Operational Stance</h4>
+                <p>Presently validating infrastructural weld parameters using modern non-destructive measurement arrays.</p>
             </div>
         </div>
     </section>
 
-    <section id="about" class="corporate-section">
-        <div class="section-header">
-            <p>Core Competencies</p>
-            <h2>Strategic Pillars of Operation</h2>
-        </div>
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <i class="fa-solid fa-microscope"></i>
-                <h3>NDT Diagnostics</h3>
-                <p style="color:var(--text-muted); font-size:0.95rem;">Extensive expertise in Non-Destructive Testing, scanning rail and weld properties for extreme stress operations and ensuring zero-defect compliance.</p>
-            </div>
-            <div class="pillar-card">
-                <i class="fa-solid fa-compass-drafting"></i>
-                <h3>Precision Instrumentation</h3>
-                <p style="color:var(--text-muted); font-size:0.95rem;">Mastery in dimensional validation using Vernier Calipers, Micrometers, Dial Gauges, and Digital Surface Roughness Testers.</p>
-            </div>
-            <div class="pillar-card">
-                <i class="fa-solid fa-people-group"></i>
-                <h3>Social Leadership (MSW)</h3>
-                <p style="color:var(--text-muted); font-size:0.95rem;">Complementing technical skills with a Master of Social Work framework for robust project administration and frontline team alignment.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="slider-section">
-        <div class="section-header">
-            <p style="color:var(--accent-color);">Verified Credentials</p>
-            <h2>Professional Accreditations</h2>
-        </div>
-        
-        <div class="slider-container">
-            <input type="radio" name="slider" id="slide-1-trigger" class="trigger" checked>
-            <label class="btn-slider" for="slide-1-trigger"></label>
-            <input type="radio" name="slider" id="slide-2-trigger" class="trigger">
-            <label class="btn-slider" for="slide-2-trigger"></label>
-            <input type="radio" name="slider" id="slide-3-trigger" class="trigger">
-            <label class="btn-slider" for="slide-3-trigger"></label>
-            <input type="radio" name="slider" id="slide-4-trigger" class="trigger">
-            <label class="btn-slider" for="slide-4-trigger"></label>
-
-            <div class="slide-wrapper">
-                <div id="slide-role">
-                    
-                    <div class="slide">
-                        <div class="slide-img-box">[ CERTIFICATE IMAGE 1 ]</div>
-                        <div class="slide-content-box">
-                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Certification</h5>
-                            <h3>NDT Basic Training</h3>
-                            <p>Successfully certified and verified at ANDT Greater Noida. This credential validates mastery in advanced quality control, ultrasonic flaw detection, and critical safety evaluations in industrial environments.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-img-box">[ CERTIFICATE IMAGE 2 ]</div>
-                        <div class="slide-content-box">
-                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Compliance</h5>
-                            <h3>RDSO Lucknow Validation</h3>
-                            <p>Official NDT certification registration track with RDSO Lucknow. Dedicated to high-tolerance safety testing, weld integrity checks, and heavy rail structural infrastructure validation workflows.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-img-box">[ CERTIFICATE IMAGE 3 ]</div>
-                        <div class="slide-content-box">
-                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Academics</h5>
-                            <h3>Diploma in Mechanical Engineering</h3>
-                            <p>Passed out from College of Fatehpur under BTEUP Lucknow board in 2014, logging an overall high score of 74%. Acquired core skills in solid dynamics and industrial design.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-img-box">[ CERTIFICATE IMAGE 4 ]</div>
-                        <div class="slide-content-box">
-                            <h5 style="color:var(--accent-color); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem; font-family:'Inter';">Leadership</h5>
-                            <h3>Master of Social Work (MSW)</h3>
-                            <p>Degree successfully awarded by Kalinga University in 2017 with a 67% performance index. Focused on resource alignment, ethical frameworks, and group leadership models.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="operations" class="corporate-section">
-        <div class="section-header">
-            <p>IT & Hardware Arsenal</p>
-            <h2>Technical Equipment Mastery</h2>
-        </div>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-icon"><i class="fa-solid fa-ruler-combined"></i></div>
-                <div class="tool-info">
-                    <h4>Vernier & Micrometer</h4>
-                    <p>High-precision linear and dimensional scaling for manufacturing tolerances.</p>
-                </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon"><i class="fa-solid fa-gauge"></i></div>
-                <div class="tool-info">
-                    <h4>Dial & Thread Gauges</h4>
-                    <p>Managing Radial, Tilt, and Thread Gauges for absolute pitch uniformity.</p>
-                </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon"><i class="fa-solid fa-desktop"></i></div>
-                <div class="tool-info">
-                    <h4>Auto-CAD 2D/3D</h4>
-                    <p>Isometric orthographic projection and 3D solid modeling frameworks.</p>
-                </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon"><i class="fa-solid fa-gears"></i></div>
-                <div class="tool-info">
-                    <h4>Pro-Engineering</h4>
-                    <p>Mechanical engineering design execution and Cemetron rendering.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="case-studies">
-        <div class="section-header">
-            <p>Proof of Work</p>
-            <h2>Industrial Case Repositories</h2>
-        </div>
-        <div class="case-wrapper">
+    <section id="skills" class="fade-up">
+        <span class="section-label">02 // Technical Stack</span>
+        <h2 class="section-title">Operational Skills</h2>
+        <div class="skills-container">
             
-            <div class="case-row">
-                <div class="case-label">
-                    <span>Field Inspection</span>
-                    <h3>Rail Asset Weld Diagnostics</h3>
-                </div>
-                <div class="case-content">
-                    <div class="case-block">
-                        <h5>The Challenge</h5>
-                        <p>Detecting deep structural macro-defects across raw welded track structures under tight regional deadline conditions without halting freight operations.</p>
+            <div class="skill-group">
+                <h3>Precision Instruments</h3>
+                <div class="skill-stack">
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Vernier Caliper</span><span>90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="90%"></div></div>
                     </div>
-                    <div class="case-block">
-                        <h5>The Implementation</h5>
-                        <p>Deployed strict NDT test metrics utilizing specialized Dial and Thread Gauges coupled with advanced ultrasonic tracking tools per RDSO guidelines.</p>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Micrometer</span><span>88%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="88%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Dial Gauge</span><span>85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="85%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Surface Roughness Digital Tester</span><span>82%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="82%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Thread Gauge</span><span>80%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="80%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Radial Gauge</span><span>78%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="78%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Tilt Gauge</span><span>75%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="75%"></div></div>
                     </div>
                 </div>
             </div>
 
-            <div class="case-row">
-                <div class="case-label">
-                    <span>CAD Prototyping</span>
-                    <h3>Component Design Optimization</h3>
-                </div>
-                <div class="case-content">
-                    <div class="case-block">
-                        <h5>The Challenge</h5>
-                        <p>Legacy mechanical designs required immediate conversion into standardized 3D models for automated component asset prototyping pipelines.</p>
+            <div class="skill-group">
+                <h3>Computer & Software</h3>
+                <div class="skill-stack">
+                    <div class="skill-card">
+                        <div class="skill-header"><span>AutoCAD (2D, Isometric, 3D Modeling)</span><span>80%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="80%"></div></div>
                     </div>
-                    <div class="case-block">
-                        <h5>The Implementation</h5>
-                        <p>Engineered detailed isometric 2D sketches and full 3D solid model designs via specialized Auto-Cad software, reducing structural prototype errors entirely.</p>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Pro-Engineering (Mechanical Design)</span><span>72%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="72%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>MS Office (XP/03/07), Windows 7</span><span>85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="85%"></div></div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-header"><span>Cemetron Design Software</span><span>65%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" data-target="65%"></div></div>
                     </div>
                 </div>
             </div>
@@ -632,63 +1077,352 @@
         </div>
     </section>
 
-    <section id="timeline" class="corporate-section">
-        <div class="section-header">
-            <p>Professional Journey</p>
-            <h2>Career Chronology</h2>
-        </div>
-        <div class="timeline-container">
-            <div class="timeline-node">
-                <h3>NDT Supervisor</h3>
-                <span class="timeline-meta">The India Thermit Corporation Ltd | Present</span>
-                <p>Presently leading technical operations in processing ultrasonic test logs. Managing rail and weld safety compliance pipelines using advanced precision instruments and adhering strictly to established RDSO quality protocols.</p>
+    <section id="soft-skills" class="fade-up">
+        <span class="section-label">03 // Synergies</span>
+        <h2 class="section-title">Core Management Attributes</h2>
+        <div class="soft-grid">
+            <div class="soft-card">
+                <span class="soft-icon">🗂️</span>
+                <h3>Project Management</h3>
             </div>
-            <div class="timeline-node">
-                <h3>Master of Social Work (MSW)</h3>
-                <span class="timeline-meta">Kalinga University | Graduated 2017</span>
-                <p>Acquired robust knowledge in strategic resource alignment, developmental frameworks, project coordination, and human resource leadership workflows.</p>
+            <div class="soft-card">
+                <span class="soft-icon">🔍</span>
+                <h3>Problem Solving</h3>
             </div>
-            <div class="timeline-node">
-                <h3>Diploma in Mechanical Engineering</h3>
-                <span class="timeline-meta">BTEUP Lucknow (College of Fatehpur) | Graduated 2014</span>
-                <p>Passed with 74% aggregate. Specialized in institutional core skills across mechanical designs, technical parameters, solid modeling, and geometric design layouts.</p>
+            <div class="soft-card">
+                <span class="soft-icon">💡</span>
+                <h3>Creativity</h3>
+            </div>
+            <div class="soft-card">
+                <span class="soft-icon">👥</span>
+                <h3>Leadership</h3>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="footer-section">
-        <div class="footer-grid">
+    <section id="education" class="fade-up">
+        <span class="section-label">04 // Academic Track</span>
+        <h2 class="section-title">Educational Background</h2>
+        <div class="edu-timeline">
             
-            <div class="footer-brand">
-                <h2>Dhirendra Singh</h2>
-                <p>Precision Mechanical Engineer and NDT Specialist dedicated to structural integrity, rigorous safety compliance, and robust operational execution.</p>
+            <div class="edu-item edu-item-left">
+                <div class="edu-dot"></div>
+                <div class="edu-card">
+                    <div class="edu-year">2006</div>
+                    <h3 class="edu-degree">High School</h3>
+                    <div class="edu-inst">UP Board</div>
+                    <span class="badge-percentage">Score: 65.8%</span>
+                </div>
             </div>
 
-            <div class="footer-links">
-                <h4>System Maps</h4>
-                <ul>
-                    <li><a href="#about">Executive Summary</a></li>
-                    <li><a href="#certifications">Accreditations</a></li>
-                    <li><a href="#operations">Technical Arsenal</a></li>
-                    <li><a href="#timeline">Career Chronology</a></li>
+            <div class="edu-item edu-item-right">
+                <div class="edu-dot"></div>
+                <div class="edu-card">
+                    <div class="edu-year">2008</div>
+                    <h3 class="edu-degree">Intermediate</h3>
+                    <div class="edu-inst">UP Board</div>
+                    <span class="badge-percentage">Score: 61.8%</span>
+                </div>
+            </div>
+
+            <div class="edu-item edu-item-left">
+                <div class="edu-dot"></div>
+                <div class="edu-card">
+                    <div class="edu-year">2011</div>
+                    <h3 class="edu-degree">B.A.</h3>
+                    <div class="edu-inst">C.S.J.M University Kanpur (C.Ch.Ch. College)</div>
+                    <span class="badge-percentage">Score: 49%</span>
+                </div>
+            </div>
+
+            <div class="edu-item edu-item-right">
+                <div class="edu-dot"></div>
+                <div class="edu-card">
+                    <div class="edu-year">2014</div>
+                    <h3 class="edu-degree">Diploma in Mechanical Engineering</h3>
+                    <div class="edu-inst">College of Fatehpur (BTE UP Lucknow)</div>
+                    <span class="badge-percentage">Score: 74%</span>
+                </div>
+            </div>
+
+            <div class="edu-item edu-item-left">
+                <div class="edu-dot"></div>
+                <div class="edu-card">
+                    <span class="latest-tag">Latest</span>
+                    <div class="edu-year">2017</div>
+                    <h3 class="edu-degree">MSW (Master of Social Work)</h3>
+                    <div class="edu-inst">Kalinga University</div>
+                    <span class="badge-percentage">Score: 67%</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience" class="fade-up">
+        <span class="section-label">05 // Industrial Record</span>
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="exp-container">
+            <div class="exp-dot-glow"></div>
+            <div class="exp-card">
+                <div class="exp-time">Presently Working</div>
+                <h3 class="exp-title">NDT Supervisor</h3>
+                <div class="exp-company">India Thermit Corporation Ltd</div>
+                <ul class="exp-bullets">
+                    <li>Execution of non-destructive testing loops on specialized rail joints and structural welds.</li>
+                    <li>Calibration and continuous handling of precision measurement instruments for systematic quality assurance.</li>
+                    <li>On-site logistics supervision, technical verification, and dynamic weekly quality reporting.</li>
                 </ul>
+                <a href="#" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 4px;">📄 Experience Letter</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" class="fade-up">
+        <span class="section-label">06 // Endorsements</span>
+        <h2 class="section-title">Technical Qualifications</h2>
+        <div class="certs-grid">
+            
+            <div class="cert-card">
+                <div class="cert-icon-box">📜</div>
+                <div class="cert-details">
+                    <h4>Diploma in Mech. Engineering</h4>
+                    <p>BTE UP Lucknow · 2014</p>
+                    <span class="cert-action-btn">Score: 74%</span>
+                </div>
             </div>
 
-            <div class="footer-contact">
-                <h4 style="font-family:'Inter'; text-transform:uppercase; letter-spacing:2px; font-size:0.9rem; margin-bottom:1.5rem; grid-column:span 2;">Establish Contact</h4>
-                <form onsubmit="event.preventDefault(); alert('Communication dispatched successfully!');">
-                    <input type="text" placeholder="Enterprise / Recruiter Name" required>
-                    <input type="email" placeholder="Official Email Address" required>
-                    <textarea rows="3" placeholder="Specify engagement objectives or project parameters..." required></textarea>
-                    <button type="submit">Broadcast Secure Message</button>
-                </form>
+            <div class="cert-card">
+                <div class="cert-icon-box">🔬</div>
+                <div class="cert-details">
+                    <h4>NDT Basic Training</h4>
+                    <p>ANDT Greater Noida</p>
+                    <a href="#" class="cert-action-btn">📄 View Certification</a>
+                </div>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon-box">🛤️</div>
+                <div class="cert-details">
+                    <h4>NDT Certificate (Rail & Weld)</h4>
+                    <p>RDSO Lucknow</p>
+                    <a href="#" class="cert-action-btn">📄 View Certification</a>
+                </div>
             </div>
 
         </div>
-        <div class="copyright-bar">
-            <p>&copy; 2026 Dhirendra Singh. Engineered for Precision. | Address: Village Manudera, Post Kalyanpur, Dist Fatehpur, U.P. (212666)</p>
+    </section>
+
+    <section id="references" class="marquee-section fade-up">
+        <div style="padding: 0 max(4vw, 20px); margin-bottom: 24px;">
+            <span class="section-label">07 // Network</span>
+            <h2 class="section-title" style="margin-bottom:0;">Professional References</h2>
         </div>
+        <div class="marquee-wrapper">
+            
+            <div class="marquee-row marquee-left">
+                <div class="ref-pill"><span class="ref-avatar">👨‍🏫</span><div class="ref-info"><strong>Prof. Shashi Kumar</strong><span>HOD Mechanical · College of Fatehpur</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">👨‍💼</span><div class="ref-info"><strong>A.K. Mishra</strong><span>Senior Engineer · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🎓</span><div class="ref-info"><strong>R.N. Prasad</strong><span>Faculty · BTE UP Lucknow</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🏅</span><div class="ref-info"><strong>V.S. Singh</strong><span>NDT Trainer · ANDT Greater Noida</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">📋</span><div class="ref-info"><strong>K.K. Rao</strong><span>Project Lead · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">👨‍🏫</span><div class="ref-info"><strong>Prof. Shashi Kumar</strong><span>HOD Mechanical · College of Fatehpur</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">👨‍💼</span><div class="ref-info"><strong>A.K. Mishra</strong><span>Senior Engineer · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🎓</span><div class="ref-info"><strong>R.N. Prasad</strong><span>Faculty · BTE UP Lucknow</span></div></div>
+            </div>
+
+            <div class="marquee-row marquee-right">
+                <div class="ref-pill"><span class="ref-avatar">🔬</span><div class="ref-info"><strong>S. Chakrabarti</strong><span>Quality Head · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">📐</span><div class="ref-info"><strong>M. Farooqui</strong><span>CAD Instructor · Cemetron</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🌟</span><div class="ref-info"><strong>Dr. P.K. Dash</strong><span>Dean · Kalinga University</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🤝</span><div class="ref-info"><strong>Ramanathan Iyer</strong><span>Colleague · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🔬</span><div class="ref-info"><strong>S. Chakrabarti</strong><span>Quality Head · India Thermit Corp</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">📐</span><div class="ref-info"><strong>M. Farooqui</strong><span>CAD Instructor · Cemetron</span></div></div>
+                <div class="ref-pill"><span class="ref-avatar">🌟</span><div class="ref-info"><strong>Dr. P.K. Dash</strong><span>Dean · Kalinga University</span></div></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="fade-up">
+        <div class="contact-container">
+            <span class="section-label">08 // Connection Node</span>
+            <h2 class="section-title">Let's Work Together</h2>
+            <p style="color: var(--muted); margin-bottom: 24px;">Available for industrial engineering deployment, quality audit loops, and structural structural system roles.</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:dhirendrasingh2060@gmail.com" class="contact-btn">
+                    <span class="contact-icon">📧</span>
+                    <span style="font-size:0.8rem; word-break:break-all;">dhirendrasingh2060@gmail.com</span>
+                </a>
+                <a href="tel:+917651945535" class="contact-btn">
+                    <span class="contact-icon">📞</span>
+                    <span>+91-7651945535</span>
+                </a>
+                <a href="tel:+918176954425" class="contact-btn">
+                    <span class="contact-icon">📱</span>
+                    <span>+91-8176954425</span>
+                </a>
+                <a href="https://maps.google.com/?q=Fatehpur,Uttar+Pradesh" target="_blank" class="contact-btn">
+                    <span class="contact-icon">📍</span>
+                    <span style="font-size:0.8rem;">Fatehpur, U.P.</span>
+                </a>
+            </div>
+
+            <a href="#" class="btn btn-filled" style="border-radius: 4px;">📥 Download Complete Resume</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Built with ❤️ using <a href="https://cvloom.com" target="_blank">CVLoom</a> · Portfolio of Dhirendra Singh</p>
+        <p>Direct Query Line: dhirendrasingh2060@gmail.com // © 2026 Repository Systems</p>
     </footer>
 
+    <script>
+        /* ===== DATA CONFIGURATION FOR SYSTEMS ===== */
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        // Initialize Theme System
+        const initialTheme = localStorage.getItem('industrial-portfolio-theme') || 'dark';
+        root.setAttribute('data-theme', initialTheme);
+        themeToggle.textContent = initialTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const activeTheme = root.getAttribute('data-theme');
+            const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', targetTheme);
+            themeToggle.textContent = targetTheme === 'dark' ? '☀️' : '🌙';
+            localStorage.setItem('industrial-portfolio-theme', targetTheme);
+        });
+
+        /* ===== MOBILE HAMBURGER LAYER ===== */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        /* ===== INTERACTIVE CURSOR PROPAGATION ===== */
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mX = 0, mY = 0, rX = 0, rY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mX = e.clientX; mY = e.clientY;
+            dot.style.top = `${mY}px`;
+            dot.style.left = `${mX}px`;
+        });
+
+        function lagFrameAnimation() {
+            rX += (mX - rX) * 0.14;
+            rY += (mY - rY) * 0.14;
+            ring.style.top = `${rY}px`;
+            ring.style.left = `${rX}px`;
+            requestAnimationFrame(lagFrameAnimation);
+        }
+        lagFrameAnimation();
+
+        /* ===== TYPEWRITER LOOP CONTROLLER ===== */
+        const technicalRoles = ["NDT Supervisor", "Mechanical Engineer", "Quality Inspector", "AutoCAD Designer", "Social Work Graduate"];
+        let rIdx = 0, cIdx = 0, flagDeleting = false;
+        const targetOutput = document.getElementById('typewriter');
+        let typeInterval = 110;
+
+        function executionCycle() {
+            const currentString = technicalRoles[rIdx];
+            if (flagDeleting) {
+                targetOutput.textContent = currentString.substring(0, cIdx - 1);
+                cIdx--;
+                typeInterval = 45;
+            } else {
+                targetOutput.textContent = currentString.substring(0, cIdx + 1);
+                cIdx++;
+                typeInterval = 100;
+            }
+
+            if (!flagDeleting && cIdx === currentString.length) {
+                typeInterval = 1800; // Peak holding state
+                flagDeleting = true;
+            } else if (flagDeleting && cIdx === 0) {
+                flagDeleting = false;
+                rIdx = (rIdx + 1) % technicalRoles.length;
+                typeInterval = 400; // Reset lag
+            }
+            setTimeout(executionCycle, typeInterval);
+        }
+        if (targetOutput) setTimeout(executionCycle, 800);
+
+        /* ===== HERO CORE SLIDER ACTION ===== */
+        const track = document.getElementById('sliderTrack');
+        const dotsBox = document.getElementById('sliderDots');
+        const slidesCount = document.querySelectorAll('.slide').length;
+        let activeSlide = 0;
+        let sliderThread;
+
+        // Build dynamically scaled selection indicators
+        for (let i = 0; i < slidesCount; i++) {
+            const indicatorDot = document.createElement('div');
+            indicatorDot.classList.add('dot');
+            if (i === 0) indicatorDot.classList.add('active');
+            indicatorDot.addEventListener('click', () => shiftingMechanism(i));
+            dotsBox.appendChild(indicatorDot);
+        }
+        const generatedDots = document.querySelectorAll('.dot');
+
+        function shiftingMechanism(targetIndex) {
+            activeSlide = targetIndex;
+            if (activeSlide >= slidesCount) activeSlide = 0;
+            if (activeSlide < 0) activeSlide = slidesCount - 1;
+            track.style.transform = `translateX(-${activeSlide * 33.3333}%)`;
+            generatedDots.forEach((d, idx) => d.classList.toggle('active', idx === activeSlide));
+        }
+
+        document.getElementById('nextSlide').addEventListener('click', () => shiftingMechanism(activeSlide + 1));
+        document.getElementById('prevSlide').addEventListener('click', () => shiftingMechanism(activeSlide - 1));
+
+        function initializeAutomationLoop() { sliderThread = setInterval(() => shiftingMechanism(activeSlide + 1), 5000); }
+        function breachAutomationLoop() { clearInterval(sliderThread); }
+
+        const heroBoundingArea = document.getElementById('hero');
+        heroBoundingArea.addEventListener('mouseenter', breachAutomationLoop);
+        heroBoundingArea.addEventListener('mouseleave', initializeAutomationLoop);
+        initializeAutomationLoop();
+
+        /* ===== PORTRAIT IMAGE CYCLE CROSSFADE ===== */
+        const structuralImages = document.querySelectorAll('.hero-img');
+        let imageStackIdx = 0;
+
+        function performCrossfade() {
+            if (structuralImages.length <= 1) return;
+            structuralImages[imageStackIdx].classList.remove('active');
+            imageStackIdx = (imageStackIdx + 1) % structuralImages.length;
+            structuralImages[imageStackIdx].classList.add('active');
+        }
+        setInterval(performCrossfade, 4000);
+
+        /* ===== VIEWPORT INTERSECTION OBSERVER ===== */
+        const observedBlocks = document.querySelectorAll('.fade-up');
+        const metricBars = document.querySelectorAll('.skill-bar-fill');
+
+        const activeObserver = new IntersectionObserver((intersections) => {
+            intersections.forEach(node => {
+                if (node.isIntersecting) {
+                    node.target.classList.add('active');
+                    if (node.target.id === 'skills') {
+                        metricBars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-target');
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.12 });
+
+        observedBlocks.forEach(element => activeObserver.observe(element));
+    </script>
 </body>
 </html>
